@@ -35,20 +35,18 @@
                             </p>
                         </div>
 
-                        <form id="url-shortener-form" class="mt-12 sm:mx-auto sm:max-w-lg">
-                            <div class="sm:flex mt-3 items-center">
+                        <form wire:submit="save" id="url-shortener-form" class="mt-12 sm:mx-auto sm:max-w-lg">
+                            <div class="sm:flex mt-3">
                                 <div class="min-w-0 flex-1">
-
-
-                                    <div>
-                                        <div class="mt-2">
-                                            <input type="text" name="longUrl" id="longUrl"
-                                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                                placeholder="Enter a long URL" aria-describedby="long-url" required>
-                                        </div>
+                                    <div class="mt-2">
+                                        <input wire:model="longUrl" type="text" name="longUrl" id="longUrl"
+                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            placeholder="Enter a long URL" aria-describedby="long-url" required>
                                     </div>
 
-
+                                    @error('longUrl')
+                                        <span class="error">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="mt-2 ml-2">
@@ -74,6 +72,7 @@
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             URL
+
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -89,14 +88,18 @@
                                     @foreach ($urls ?? [] as $url)
                                         <tr class={{ $loop->index % 2 === 0 ? 'bg-white' : 'bg-gray-50' }}>
                                             <td class="px-6 py-4 text-sm font-medium text-gray-900">
-                                                {{ $url->fullShortUrl }}</td>
+                                                {{ $url->shortUrl }}</td>
                                             <td class="px-6 py-4 text-sm text-gray-500">{{ $url->longUrl }}</td>
                                             <td class="px-6 py-4 text-right text-sm font-medium">
-                                                <a href={{ $url->fullShortUrl }}
+                                                <a href={{ $url->longUrl }}
                                                     class="text-indigo-600 hover:text-indigo-900" target="_blank"
                                                     rel="nofollow noopener noreferrer">
                                                     Go
                                                 </a>
+                                            </td>
+                                            <td>
+                                                <button wire:click="delete({{ $url->id }})"
+                                                    class="text-red-600 hover:text-red-900">Delete</button>
                                             </td>
                                         </tr>
                                     @endforeach
