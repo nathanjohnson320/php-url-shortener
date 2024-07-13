@@ -9,9 +9,12 @@ use App\Models\Url;
 
 class Home extends Component
 {
+    // longUrl is the input field on our form that is used to create a new short URL.
     #[Validate('required|unique:urls|starts_with:https://,http://')]
     public $longUrl = '';
 
+    // urls is an array of all the URLs in the database. We probably want pagination on this at some 
+    // point but for now it's just a demo!
     public $urls = [];
 
     public function __construct()
@@ -32,7 +35,7 @@ class Home extends Component
         return $this->redirect('/');
     }
 
-    public function delete($id)
+    public function delete(string $id)
     {
         Url::where('id', $id)->delete();
 
