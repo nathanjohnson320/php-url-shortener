@@ -13,6 +13,6 @@
 
 1. Run DB migrations `php artistan migrate`
 1. Setup encryption keys `php artisan key:generate`
-1. Run the UI build `npm run dev`
+1. Run the UI build `npm run build`
 1. Run the app `php artisan serve`
 1. Navigate to localhost:8000
