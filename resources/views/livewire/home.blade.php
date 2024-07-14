@@ -85,7 +85,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($urls ?? [] as $url)
+                                    @foreach ($urls as $url)
                                         <tr class={{ $loop->index % 2 === 0 ? 'bg-white' : 'bg-gray-50' }}>
                                             <td class="px-6 py-4 text-sm font-medium text-gray-900">
                                                 {{ $url->shortUrl }}</td>
