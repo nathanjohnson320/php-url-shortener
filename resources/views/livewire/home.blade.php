@@ -2,7 +2,7 @@
     <div class="bg-white py-16 sm:py-24">
         <div class="relative sm:py-16">
             <div aria-hidden="true" class="hidden sm:block">
-                <div class="absolute inset-y-0 left-0 w-1/2 bg-gray-50 rounded-r-3xl" />
+                <div class="inset-y-0 left-0 w-1/2 bg-gray-50 rounded-r-3xl" />
                 <svg class="absolute top-8 left-1/2 -ml-3" width="404" height="392" fill="none"
                     viewBox="0 0 404 392">
                     <defs>
